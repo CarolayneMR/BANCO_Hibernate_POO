@@ -1,0 +1,26 @@
+CREATE TABLE clientes(
+    id int not null auto_increment,
+    nome varchar(255) not null,
+    cpf varchar(11) not null,
+    primary key (id)
+); 
+
+CREATE TABLE contas (
+    id int not null auto_increment,
+    numero_conta varchar(255) not null,
+    saldo decimal not null,
+    tipo_conta varchar(255) not null,
+    cliente_id int not null,
+    data_abertura datetime not null,
+    primary key (id),
+    foreign key (cliente_id) references clientes(id)
+); 
+
+CREATE TABLE registro_transacao (
+     id INT NOT NULL AUTO_INCREMENT,
+     valor DECIMAL(10, 2) NOT NULL,
+     data DATETIME NOT NULL,
+     conta_id INT NOT NULL,
+     PRIMARY KEY (id),
+     FOREIGN KEY (conta_id) REFERENCES contas (id) 
+);
