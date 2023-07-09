@@ -8,6 +8,7 @@ import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,7 +27,7 @@ public class Cliente {
 	private String nome;
 	@Column (name = "cpf")
 	private String cpf;
-	@OneToMany (mappedBy = "cliente", cascade = CascadeType.ALL)
+	@OneToMany (fetch = FetchType.EAGER, mappedBy = "cliente", cascade = CascadeType.ALL)
 	private List<Conta> contas;
 	
 	

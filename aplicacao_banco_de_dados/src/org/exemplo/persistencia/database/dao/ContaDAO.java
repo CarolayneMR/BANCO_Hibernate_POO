@@ -9,6 +9,7 @@ import javax.persistence.criteria.Root;
 import org.exemplo.persistencia.database.db.IConnection;
 import org.exemplo.persistencia.database.model.Conta;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 public class ContaDAO implements IEntityDAO<Conta>{
 	
@@ -32,7 +33,19 @@ private IConnection conn;
 	public Conta findById(Integer id) {
 		// TODO Auto-generated method stub
 		Session session = conn.getSessionFactory().openSession();
-		return session.find(Conta.class, id);
+		Conta c = session.find(Conta.class, id);
+		session.close();
+		return c;
+	}
+	
+	public Conta findByNConta(Integer numeroconta) {
+		Session session = conn.getSessionFactory().openSession();
+		String hql = "FROM Conta WHERE numeroconta = :numero_conta";
+		Query<Conta> query = session.createQuery(hql, Conta.class);
+		query.setParameter("numero_conta", numeroconta);
+		Conta c = query.uniqueResult(); 
+		session.close();
+		return c;
 	}
 
 	@Override
