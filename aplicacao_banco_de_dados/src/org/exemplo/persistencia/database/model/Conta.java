@@ -69,9 +69,6 @@ public class Conta {
 	public Integer getNumeroconta() {
 		return numeroconta;
 	}
-	
-	
-
 
 	public int getId() {
 		return id;
@@ -143,7 +140,6 @@ public class Conta {
 		return tipoConta;
 	}
 
-
 	/**
 	 * @param tipoConta the tipoConta to set
 	 */
@@ -151,12 +147,10 @@ public class Conta {
 		this.tipoConta = tipoConta;
 	}
 
-
 	@Override
 	public int hashCode() {
 		return Objects.hash(numeroconta);
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -188,7 +182,7 @@ public class Conta {
 				System.out.println("Valor invalido para deposito");
 			}
 		} else {
-			System.out.println("Operação não permitida. Conta desativada");
+			System.out.println("Operaï¿½ï¿½o nï¿½o permitida. Conta desativada");
 		}
 		
 	}
@@ -206,7 +200,7 @@ public class Conta {
 				System.out.println("Valor invalido para saque");
 			}
 		} else {
-			System.out.println("Operação não permitida. Conta desativada.");
+			System.out.println("Operaï¿½ï¿½o nï¿½o permitida. Conta desativada.");
 		}
 		
 	}
@@ -234,8 +228,7 @@ public class Conta {
 			} else 
 				System.out.println("Saldo insuficiente para realizar transferencia.");
 			} else {
-				System.out.println("Operação não pode ser realixado entre contas desativadas.");
+				System.out.println("Operaï¿½ï¿½o nï¿½o pode ser realixado entre contas desativadas.");
 			}
 		}
 }
-	

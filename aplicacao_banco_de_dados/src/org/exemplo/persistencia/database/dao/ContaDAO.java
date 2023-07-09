@@ -14,7 +14,6 @@ public class ContaDAO implements IEntityDAO<Conta>{
 	
 private IConnection conn;
 	
-	
 	public ContaDAO (IConnection conn) {
 		this.conn = conn; 
 	}

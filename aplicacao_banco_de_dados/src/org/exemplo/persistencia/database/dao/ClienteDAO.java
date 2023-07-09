@@ -8,16 +8,19 @@ import javax.persistence.criteria.Root;
 
 import org.exemplo.persistencia.database.db.IConnection;
 import org.exemplo.persistencia.database.model.Cliente;
+import org.exemplo.persistencia.database.model.Conta;
 import org.hibernate.Session;
+import org.hibernate.query.Query;
 
 public class ClienteDAO implements IEntityDAO<Cliente>{
 
-	
 	private IConnection conn;
 	
+	private IEntityDAO<Conta> contadao;
 	
 	public ClienteDAO (IConnection conn) {
 		this.conn = conn; 
+		this.contadao = new ContaDAO(conn); //
 	}
 	
 	@Override
@@ -28,18 +31,21 @@ public class ClienteDAO implements IEntityDAO<Cliente>{
 		session.persist(t);
 		session.getTransaction().commit();
 		session.close();
-		
 	}
 
-	@Override
 	public Cliente findById(Integer id) {
 		Session session = conn.getSessionFactory().openSession();
-		return session.find(Cliente.class, id);
+		Cliente c = session.find(Cliente.class, id);
+		session.close();
+		return c;
 	}
 	
 	public Cliente findByCpf(String cpf) {
 		Session session = conn.getSessionFactory().openSession();
-		return session.find(Cliente.class, cpf);
+		String hql = "FROM Cliente WHERE cpf = :cpf";
+		Query<Cliente> query = session.createQuery(hql, Cliente.class);
+		query.setParameter("cpf", cpf);
+		return query.uniqueResult();
 	}
 
 	@Override
@@ -62,14 +68,11 @@ public class ClienteDAO implements IEntityDAO<Cliente>{
 		session.close();	
 	}
 
-	@Override
 	public void delete(Cliente t) {
-		// TODO Auto-generated method stub
 		Session session = conn.getSessionFactory().openSession();
 		session.beginTransaction();
 		session.delete(t);
 		session.getTransaction().commit();
 		session.close();
-		
 	}
 }

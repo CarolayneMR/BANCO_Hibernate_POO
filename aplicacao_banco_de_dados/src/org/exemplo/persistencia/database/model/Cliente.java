@@ -75,6 +75,7 @@ public class Cliente {
 	public String toString() {
 		return "Cliente [ CPF:" + cpf + " | Nome: " + nome + " | Contas=" + contas + " ]";
 	}
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(cpf);
@@ -91,14 +92,12 @@ public class Cliente {
 		return Objects.equals(cpf, other.cpf);
 	}
 	
-    public void adicionarConta(Conta c) {
-    	
+    public void adicionarConta(Conta c) { 	
 		
     }
 
     public void removerConta(Conta c) {
-
-    	
+ 	
     }
 
     public Conta localizarContaNumero(int numero) {
@@ -114,6 +113,5 @@ public class Cliente {
 		}
 		
 		return valor;
-    }
-    
+    }  
 }
